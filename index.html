@@ -2,18 +2,99 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.3">
-  <title>Fundo em GIF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundo GIF escurecido</title>
   <style>
-    body
+    /* Fundo GIF */
+    body {
       margin: 0;
-      height: 50vh;
-      background-image: url('tumblr_af8dc0552e6e5dfaf57f146c5db0c057_d5d7faec_2048.gif');
+      height: 100vh;
+      background-image: url('https://raw.githubusercontent.com/seuusuario/nomedorepositorio/main/fundo.gif');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-    <audio autoplay loop>
-  <source src="Out of Tune [HabE071yifk].mp3" type="audio/mp3">
-  Seu navegador não suporta áudio.
-</audio>
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      position: relative; /* necessário para o overlay */
+      overflow: hidden;
+    }
+
+    /* Camada escura transparente */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* 0.5 = 50% de opacidade */
+      z-index: 1; /* fica acima do fundo, mas abaixo do texto */
+    }
+
+    /* Conteúdo principal */
+    .content {
+      position: relative;
+      z-index: 2; /* fica acima da camada escura */
+      color: white;
+      text-align: center;
+      text-shadow: 2px 2px 8px black;
+    }
+
+    /* Botão de controle de música */
+    .music-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      z-index: 3;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 1px solid white;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .music-btn:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>Meu site com fundo GIF escurecido 🌌</h1>
+    <p>O fundo continua animado, e agora tem música de fundo!</p>
+  </div>
+
+  <!-- Música -->
+  <audio id="musica" loop>
+    <source src="https://raw.githubusercontent.com/seuusuario/nomedorepositorio/main/musica.mp3" type="audio/mp3">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <!-- Botão de controle -->
+  <button class="music-btn" onclick="toggleMusic()">▶️ Tocar música</button>
+
+  <script>
+    const musica = document.getElementById('musica');
+    const botao = document.querySelector('.music-btn');
+    let tocando = false;
+
+    function toggleMusic() {
+      if (!tocando) {
+        musica.play();
+        botao.textContent = '⏸️ Pausar música';
+        tocando = true;
+      } else {
+        musica.pause();
+        botao.textContent = '▶️ Tocar música';
+        tocando = false;
+      }
+    }
+  </script>
+</body>
+</html>
